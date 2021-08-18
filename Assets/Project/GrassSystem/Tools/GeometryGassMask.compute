@@ -1,0 +1,30 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSGGMask
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+StructuredBuffer<float3> _PositionBuffers;
+RWTexture2D<float4> _ResultColorTex;
+RWTexture2D<float4> _ResultHeightMap;
+float3 _Color;
+
+[numthreads(8,1,1)]
+void CSGGMask(uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+
+    _ResultColorTex[_PositionBuffers[id.x].xz] = float4(_Color.x, _Color.y, _Color.z, 0);
+
+    float y = _PositionBuffers[id.x].y;
+    float v = 0;
+    // divide float
+    float r = clamp(floor(y), 0, 255.0f);
+    v = (y - r) * 100.0f;
+    float g = floor(v);
+    v = (v - g) * 100.0f;
+    float b = floor(v);
+    v = (v - b) * 100.0f;
+    float a = floor(v);
+
+    _ResultHeightMap[_PositionBuffers[id.x].xz] = float4(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+}

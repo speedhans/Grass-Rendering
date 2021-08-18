@@ -1,0 +1,20 @@
+﻿#pragma kernel CSCulling
+
+#include "GrassCalulate.hlsl"
+
+float4 _CenterPosition;
+float4x4 _VPMatrix;
+float _MaxDrawDistance;
+Texture2D _ColorMapTexture;
+StructuredBuffer<float3> _BasePositionDatas;
+AppendStructuredBuffer<uint> _VisibleInstancesID;
+[numthreads(64,1,1)]
+void CSCulling(uint3 id : SV_DispatchThreadID)
+{
+	float3 basepos = _BasePositionDatas[id.x] + _CenterPosition.xyz;
+	basepos = CalulatePosition(basepos);//float3(basepos.x + cos(basepos.z * 4.75f) * 0.1f, 0, basepos.z + cos(basepos.x * 1.82f) * 0.1f);
+	float4 absPosCS = abs(mul(_VPMatrix,float4(basepos,1.0)));
+
+    if (_ColorMapTexture[basepos.xz].g > 0 && absPosCS.z <= absPosCS.w && absPosCS.y <= absPosCS.w*1.5 && absPosCS.x <= absPosCS.w*1.1 && absPosCS.w <= _MaxDrawDistance)
+		_VisibleInstancesID.Append(id.x);
+}

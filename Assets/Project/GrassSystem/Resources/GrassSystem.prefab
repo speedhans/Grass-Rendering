@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8125281604019633134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6212941153865571640}
+  m_Layer: 0
+  m_Name: GrassSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6212941153865571640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125281604019633134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9045529801198141863}
+  - {fileID: 9045529801443297315}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9045529801198141857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9045529801198141863}
+  - component: {fileID: 9045529801198141862}
+  m_Layer: 0
+  m_Name: GrassRenderer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9045529801198141863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045529801198141857}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6212941153865571640}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 12.553, z: 0}
+--- !u!114 &9045529801198141862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045529801198141857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe6eee69c7f28244b99057c0c96844f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GrassMap: {fileID: 2800000, guid: 60f09d61894ea4a468a3c408b057ec47, type: 3}
+  m_DrawMaterial: {fileID: 2100000, guid: d64d658cabffb6348a3bca72f3712c65, type: 2}
+  m_CullingCS: {fileID: 7200000, guid: 694b309dbd0e7824bb7dad96260a1e43, type: 3}
+  m_GrassSpawnAreaX: 40
+  m_GrassSpawnAreaY: 40
+  m_GrassCountX: 500
+  m_GrassCountY: 500
+  m_VisibleDistance: 35
+  m_MainCamera: {fileID: 0}
+--- !u!1 &9045529801443297325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9045529801443297315}
+  - component: {fileID: 9045529801443297314}
+  m_Layer: 0
+  m_Name: Tool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9045529801443297315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045529801443297325}
+  m_LocalRotation: {x: -0, y: -0.10932779, z: 0, w: 0.99400574}
+  m_LocalPosition: {x: -39.121082, y: 0, z: -25.922447}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6212941153865571640}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9045529801443297314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045529801443297325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cba6d85b3fe6445955ccd52f92a4f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 32768
+  m_CircleRadius: 3
+  m_BrushDistance: 1000
+  m_Density: 58
+  m_MaskTexture: {fileID: 0}
+  m_Texture: {fileID: 0}
+  m_GrassMaskCS: {fileID: 7200000, guid: eaa70b0b30555484fa39a13a8e8f5b64, type: 3}
+  m_PixelUpdate: 0
+  m_SourceTexture: {fileID: 2800000, guid: 60f09d61894ea4a468a3c408b057ec47, type: 3}
+  m_DrawColor: {r: 0.6431373, g: 0.21093085, b: 0.050980385, a: 0}
