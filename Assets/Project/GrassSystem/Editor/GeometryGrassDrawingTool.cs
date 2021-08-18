@@ -140,23 +140,7 @@ public class GeometryGrassDrawingTool : Editor
 
         if (GUILayout.Button("Source Load"))
         {
-            if (m_GeometryGrass.m_ColorSourceTexture)
-            {
-                m_GeometryGrass.ResetTexture();
-                RenderTexture beforeRT = RenderTexture.active;
-                RenderTexture.active = m_GeometryGrass.m_ColorTexture;
-                Graphics.Blit(m_GeometryGrass.m_ColorSourceTexture, m_GeometryGrass.m_ColorTexture);
-                RenderTexture.active = beforeRT;
-            }
-
-            if (m_GeometryGrass.m_HeightMapSourceTexture)
-            {
-                m_GeometryGrass.ResetTexture();
-                RenderTexture beforeRT = RenderTexture.active;
-                RenderTexture.active = m_GeometryGrass.m_HeightMapTexture;
-                Graphics.Blit(m_GeometryGrass.m_HeightMapSourceTexture, m_GeometryGrass.m_HeightMapTexture);
-                RenderTexture.active = beforeRT;
-            }
+            m_GeometryGrass.SourceLoad();
         }
 
         if (!m_IsDrawing)

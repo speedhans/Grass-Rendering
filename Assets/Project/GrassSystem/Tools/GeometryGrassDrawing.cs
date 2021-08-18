@@ -40,26 +40,17 @@ public class GeometryGrassDrawing : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+#if UNITY_EDITOR
+        SourceLoad();
+#else
         CreateMaskTexture();
-    }
-
-    private void Start()
-    {
-        if (m_ColorSourceTexture && m_ColorTexture && m_HeightMapSourceTexture && m_HeightMapTexture)
-        {
-            RenderTexture beforeRT = RenderTexture.active;
-            RenderTexture.active = m_ColorTexture;
-            Graphics.Blit(m_ColorSourceTexture, m_ColorTexture);
-            RenderTexture.active = m_HeightMapTexture;
-            Graphics.Blit(m_HeightMapSourceTexture, m_HeightMapTexture);
-            RenderTexture.active = beforeRT;
-        }
+#endif
     }
 
     private void OnEnable()
     {
         Instance = this;
-        CreateMaskTexture();
+        //CreateMaskTexture();
         m_PixelUpdate = false;
     }
 
@@ -73,18 +64,41 @@ public class GeometryGrassDrawing : MonoBehaviour
         m_ColorTexture.enableRandomWrite = true;
         m_ColorTexture.Create();
 
-        //RenderTexture rt = RenderTexture.active;
-        //RenderTexture.active = m_ColorTexture;
-        //GL.Clear(true, true, Color.clear);
+        m_HeightMapTexture = new RenderTexture(512, 512, 1, RenderTextureFormat.ARGB32);
+        m_HeightMapTexture.filterMode = FilterMode.Point;
+        m_HeightMapTexture.enableRandomWrite = true;
+        m_HeightMapTexture.Create();
+
+        Debug.Log("Create Texture");
+    }
+
+    public void SourceLoad()
+    {
+        if (m_ColorTexture && !m_ColorTexture.enableRandomWrite) return;
+        if (m_HeightMapTexture && !m_HeightMapTexture.enableRandomWrite) return;
+
+        m_ColorTexture = new RenderTexture(512, 512, 1, RenderTextureFormat.ARGB32);
+        m_ColorTexture.filterMode = FilterMode.Point;
+        m_ColorTexture.enableRandomWrite = true;
+        m_ColorTexture.Create();
 
         m_HeightMapTexture = new RenderTexture(512, 512, 1, RenderTextureFormat.ARGB32);
         m_HeightMapTexture.filterMode = FilterMode.Point;
         m_HeightMapTexture.enableRandomWrite = true;
         m_HeightMapTexture.Create();
 
-        //RenderTexture.active = m_HeightMapTexture;
-        //GL.Clear(true, true, Color.clear);
-        //RenderTexture.active = rt;
+        if (m_ColorSourceTexture && m_ColorTexture && m_HeightMapSourceTexture && m_HeightMapTexture)
+        {
+            RenderTexture beforeRT = RenderTexture.active;
+
+            RenderTexture.active = m_HeightMapTexture;
+            Graphics.Blit(m_HeightMapSourceTexture, m_HeightMapTexture);
+
+            RenderTexture.active = m_ColorTexture;
+            Graphics.Blit(m_ColorSourceTexture, m_ColorTexture);
+
+            RenderTexture.active = beforeRT;
+        }
     }
 
     public void ResetTexture()
